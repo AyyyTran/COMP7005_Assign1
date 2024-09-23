@@ -12,14 +12,14 @@ def validate_socket_path(socket_path):
 
 def create_client_socket(socket_path):
         validate_socket_path(socket_path)
-    try:
-        client_socket = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
-        client_socket.connect(socket_path)
-        print("Connected to the server.")
-        return client_socket
-    except socket.error as e:
-        print(f"Error: Could not connect to socket at '{socket_path}'. Please ensure the server is running and the socket path is correct.")
-        sys.exit(1)
+        try:    
+            client_socket = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
+            client_socket.connect(socket_path)
+            print("Connected to the server.")
+            return client_socket
+        except socket.error as e:
+            print(f"Error: Could not connect to socket at '{socket_path}'. Please ensure the server is running and the socket path is correct.")
+            sys.exit(1)
 
 def send_file_path(client_socket, file_path):
     try:
